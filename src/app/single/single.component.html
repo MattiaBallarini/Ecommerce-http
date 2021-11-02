@@ -1,0 +1,46 @@
+<div *ngIf="book">
+  <div class="container-fluid mt-2" style="background-color: #f8f8f8;">
+      <div class="container py-4">
+        <h1>{{ book.title }}</h1>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a routerLink="/">Homepage</a></li>
+            <li class="breadcrumb-item">
+              {{ book.genre }}
+            </li>
+            <li class="breadcrumb-item active">{{ book.title }}</li>
+          </ol>
+        </nav>
+      </div>
+  </div>
+  <div class="container mt-3">
+      <div class="row">
+        <div class="col-4">
+          <img [src]="book.img" class="img-fluid" alt="...">
+        </div>
+        <div class="col">
+          <!-- definition list -->
+          <dl>
+            <dt>Titolo</dt>
+            <dd>{{ book.title }}</dd>
+            <dt>Autore</dt>
+            <dd>{{ book.author }}</dd>
+            <dt>Casa editrice</dt>
+            <dd>{{ book.title }}</dd>
+            <dt>Pagine</dt>
+            <dd>{{ book.pages }}</dd>
+            <dt>Genere</dt>
+            <dd>{{ book.genre }}</dd>
+            <dt>Disponibilità</dt>
+            <dd><span [ngClass]="getDisponibilita()">{{ book.stock - cartService.numberOfBooksInCart(book) }} disponibili</span></dd>
+          </dl>
+          <div class="price fs-2">{{ book.price | currency:"EUR" }}</div>
+          
+          <app-add-to-cart-select [book]="book" [cssClass]="'btn-primary'"></app-add-to-cart-select>
+
+        </div>
+      </div>
+
+
+  </div>
+</div>

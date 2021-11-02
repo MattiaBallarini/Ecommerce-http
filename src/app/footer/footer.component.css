@@ -1,0 +1,17 @@
+FOOTER {
+  margin-top: 80px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+  background-color: #333;
+  color: white;
+}
+
+FOOTER A.socialIcon {
+  display: inline-block;
+  color: #888;
+  margin-right: 8px;
+}
+
+FOOTER A.socialIcon:hover {
+  color: white;
+}

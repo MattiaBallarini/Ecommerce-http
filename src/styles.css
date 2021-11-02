@@ -1,1 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+BODY{padding-top: 80px;}
+#splash {
+  margin-top: 10px;
+  background-image: url("/assets/img/splash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+#splash::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 80%);
+}
+#splash H1 {
+  padding: 140px 0;
+  color: #fff;
+  position: relative;
+  text-shadow: 3px 3px 16px rgb(0 0 0);
+  font-size: 2.8rem;
+}
+A,
+A.nav-link {
+  color: rgb(143, 0, 0);
+}
+A:hover,
+A.nav-link:hover {
+  color: rgb(228, 0, 0);
+}
+
+A.nav-link.active {
+  background-color: rgb(143, 0, 0);
+  color:#fff;
+  border-radius: 8px;
+}
+
+main.content {
+  min-height: 600px;
+  display: block;
+}
+
+.price {
+    color: rgb(255, 119, 0);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+@media screen and (max-width: 600px) {
+  #splash .container H1 {
+    text-align: center;
+    font-size: 2rem;
+    padding: 70px 0;
+  }
+  main.content {
+    min-height: unset;
+  }
+
+  .nav-scroller .nav-item A {
+    padding: 0.5rem;
+  }
+}
+
+.mh700 {
+  height: 700px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

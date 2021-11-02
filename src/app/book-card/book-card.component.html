@@ -1,0 +1,15 @@
+<div class="card book">
+      <span class="badge bg-success promo" *ngIf="book.promo">PROMO</span>
+      <img [src]="book.img" class="card-img-top" alt="...">
+      <div class="card-body">
+            <h5 class="card-title">{{ book.title | titlecase }}</h5>
+            <h6>di {{ book.author | titlecase }}</h6>
+            <span class="badge rounded-pill bg-secondary me-2" *ngFor="let genere of book?.genre">{{ genere }}</span>
+            <p class="card-text mt-2">Casa Editrice: {{ book.publisher }}</p>
+            <div class="price">{{ book.price | currency:'EUR' }}</div>
+            
+            <app-add-to-cart-select [book]="book" [cssClass]="'btn-secondary'"></app-add-to-cart-select>
+
+            <a routerLink="/single/{{ book.isbn }}" class="btn btn-sm btn-outline-primary">Visualizza &raquo;</a>
+      </div>
+</div>

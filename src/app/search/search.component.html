@@ -1,0 +1,69 @@
+<div class="container-fluid mt-2" style="background-color: #f8f8f8;">
+    <div class="container py-4">
+      <h1>Elenco libri</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a routerLink="/">Homepage</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Risultati di ricerca</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Risultati -->
+  <div class="container mt-3">
+    <div class="row">
+      <aside class="col-4">
+        <div class="list-group">
+          <a *ngFor="let g of generi" routerLinkActive="active" routerLink="/categoria/{{g}}" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+            {{ g }}
+          </a>
+        </div>
+        <h6 class="mt-4 mb-3">Filtra per prezzo</h6>
+        <div class="row g-1">
+            <div class="col">
+                <input type="text" [(ngModel)]="filtroPrezzoDa" class="form-control" placeholder="da...">
+            </div>
+            <div class="col">
+                <input type="text" [(ngModel)]="filtroPrezzoA" class="form-control" placeholder="a...">
+            </div>
+            <div class="col">
+                <div class="d-grid">
+                    <button (click)="filtraPrezzo()" type="button" class="btn btn-primary">Filtra</button>
+                </div>
+            </div>
+        </div>
+      </aside>
+      <div class="col">
+
+        <select class="form-select mb-3" [(ngModel)]="sorting" (ngModelChange)="ordina()">
+          <option value="1">I più cari</option>
+          <option value="2">I meno cari</option>
+          <option value="3">Titolo (A-Z)</option>
+          <option value="4">Titolo (Z-A)</option>
+        </select>
+
+        <div class="alert alert-warning my-3" *ngIf="results && results!.length === 0">
+            Nessun libro trovato
+        </div>
+
+        <div class="card book mb-3" *ngFor="let book of results">
+          <div class="row g-0">
+            <div class="col-md-3">
+              <img [src]="book.img" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-9">
+              <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <h6>{{ book.author }}</h6>
+                <a routerLink="/categoria/{{ g }}" class="badge rounded-pill bg-secondary me-1" *ngFor="let g of book.genre">{{ g }}</a> 
+                <p class="card-text mt-2">Casa Editrice: {{ book.publisher }}</p>
+                <div class="price">{{ book.price | currency:"EUR" }}</div>
+                <a routerLink="/single/{{ book.isbn }}" class="btn btn-sm btn-outline-primary">Visualizza &raquo;</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,42 @@
+<div id="splash">
+    <div class="container">
+        <h1>Il miglior sito al<br>mondo per comprare i<br>tuoi libri</h1>
+    </div>
+</div>
+
+<!-- @TODO: Prime NG Carousel -->
+<section class="mt-5">
+    <h2 class="text-center">Top della settimana</h2>
+    <div class="container" *ngIf="libriInPromo">
+        <div class="row gy-4 mt-5 justify-content-around">
+            <div class="col-6 col-sm-4 col-lg-3" *ngFor="let b of libriInPromo">
+                <app-book-card [book]="b"></app-book-card>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!libriInPromo">
+        <div class="text-center my-5">
+            <div class="spinner-border m-5 text-danger" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container my-5" *ngIf="libroInOfferta">
+    <div class="card p-5 bg-success text-light">
+        <h3 class="mt-0"><i class="bi bi-star"></i> Offerta speciale</h3>
+        <div class="row mt-4 align-items-center">
+            <div class="col-2">
+                <img [src]="libroInOfferta!.img" class="img-fluid img-thumbnail">
+            </div>
+            <div class="col">
+                <h5 class="card-title">{{ libroInOfferta!.title }}</h5>
+                <h6>{{ libroInOfferta!.author }}</h6>
+                <p class="card-text mt-2">Casa Editrice: {{ libroInOfferta!.publisher }}</p>
+                <div class="price">{{ libroInOfferta!.price | currency:"EUR" }}</div>
+                <a routerLink="/single/{{ libroInOfferta!.isbn }}" class="btn btn-outline-light btn-lg">Visualizza &raquo;</a>
+            </div>
+        </div>
+    </div>
+</div>

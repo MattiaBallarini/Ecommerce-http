@@ -1,0 +1,49 @@
+
+    <header style="z-index: 99999; background-color: #fff;" class="d-flex fixed-top flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
+      <div class="container d-flex">
+        <a routerLink="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+          <span class="fs-4">Bookstore</span>
+        </a>
+
+        <form class="col-12 col-md-6 mb-3 mb-sm-0" #searchForm="ngForm" (ngSubmit)="cerca()">
+          <div class="input-group">
+              <input [ngClass]="{'is-invalid': search.dirty && search.invalid }" #search="ngModel" [(ngModel)]="searchKeyword" required name="searchKeyword" class="form-control" placeholder="Cerca...">
+              <button [disabled]="searchForm.invalid" class="btn btn-outline-secondary" type="submit">Cerca</button>
+          </div>
+        </form>
+
+        <div class="col-md-3 text-end">
+          <button routerLink="/carrello" type="button" class="btn btn-outline-primary me-3 position-relative">
+              <i class="bi bi-cart"></i> 
+              <!-- CART BUTTON (TOT) -->
+              <span *ngIf="cartService.getCount() > 0">
+                {{ cartService.getTotal() | currency:"EUR" }}
+              </span>
+              <!-- BADGE -->
+              <span *ngIf="cartService.getCount() > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{ cartService.getCount() }}
+              </span>
+          </button>
+          <button type="button" class="btn btn-primary">Accedi</button>
+        </div>
+      </div>
+    </header>
+    <div class="nav-scroller">
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-current="page" routerLink="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categorie</a>
+              <ul class="dropdown-menu" *ngIf="generi">
+                <li><a class="dropdown-item" routerLink="/categoria/{{ g }}" *ngFor="let g of generi">{{ g }}</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/offerte"><i class="bi bi-star"></i> Offerte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/contatti">Contatti</a>
+            </li>
+          </ul>
+    </div>

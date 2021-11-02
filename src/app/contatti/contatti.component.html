@@ -1,0 +1,55 @@
+<div class="container mh700">
+    <h1>Contatti</h1>
+    <p class="lead">Inviaci una email e sarai ricontattato</p>
+    <div class="bg-light border p-5 mt-5">
+        <form class="w-75" [formGroup]="frmContatti" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">La tua email</label>
+                        <input
+                        [ngClass]="{'is-invalid' : ctrlEmail.invalid && ctrlEmail.touched}"
+                        formControlName="email"
+                        type="email"
+                        class="form-control"
+                        id="email">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo di richiesta</label>
+                        <select
+                        [ngClass]="{'is-invalid' : ctrlTipoRichiesta.invalid && ctrlTipoRichiesta.touched}"
+                        formControlName="tipoRichiesta"
+                        class="form-select"
+                        id="tipo">
+                            <option value="">Scegli...</option>
+                            <option *ngFor="let tipo of tipi" [value]="tipo.val">{{tipo.label}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="mb-3">
+                        <label for="msg" class="form-label">Messaggio</label>
+                        <textarea
+                        [ngClass]="{'is-invalid' : ctrlMessaggio.invalid && ctrlMessaggio.touched}"
+                        formControlName="messaggio"
+                        rows="6"
+                        class="form-control"
+                        id="msg"></textarea>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-check mb-3">
+                        <input
+                        [ngClass]="{'is-invalid' : ctrlAcconsento.invalid && ctrlAcconsento.touched}"
+                        formControlName="acconsento"
+                        class="form-check-input" type="checkbox" value="" id="tos">
+                        <label class="form-check-label" for="tos">Acconsento al <a href="#">trattamento dei dati</a></label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-outline-primary mt-4">Invia messaggio</button>
+        </form>
+    </div>
+</div>

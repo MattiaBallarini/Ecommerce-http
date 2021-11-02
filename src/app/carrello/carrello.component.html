@@ -1,0 +1,49 @@
+<div class="container-fluid mt-2" style="background-color: #f8f8f8;">
+    <div class="container py-4">
+      <h1>Carrello</h1>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a routerLink="/">Homepage</a></li>
+          <li class="breadcrumb-item active">Carrello</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container mt-3 mh700">
+
+    <div *ngIf="cartService.getCount() == 0">
+        <div class="alert alert-warning my-5">Il carrello non contiene oggetti</div>
+    </div>
+
+    <div *ngIf="cartService.getCount() > 0">
+        <div class="row align-items-center" *ngFor="let book of cartService.cart">
+            <div class="col-2">
+                <img [src]="book.item.img" class="img-fluid">
+            </div>
+            <div class="col text-center">
+                {{ book.item.stock - cartService.numberOfBooksInCart(book.item) }} disponibili
+            </div>
+            <div class="col text-center">
+                {{ book.item.price | currency:"EUR" }}
+            </div>
+            <div class="col-4">
+                <app-set-to-cart-select></app-set-to-cart-select>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+        <div class="col-6 offset-6">
+            <div class="input-group">
+            <input type="text" class="form-control" placeholder="Codice coupon...">
+            <button type="button" class="btn btn-primary">Applica</button>
+            </div>
+            <h3 class="text-end mt-3">Totale: {{ cartService.getTotal() | currency:"EUR" }}</h3>
+        </div>
+        </div>
+
+        <div class="d-grid mt-4">
+        <button class="btn btn-lg btn-outline-success">Completa l'acquisto</button>
+        </div>
+    </div>
+  </div>

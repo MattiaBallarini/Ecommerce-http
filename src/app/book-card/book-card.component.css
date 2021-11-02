@@ -1,0 +1,18 @@
+.card.book H6 {
+  font-size: 0.8em;
+  color: #888;
+}
+.card.book P {
+  margin-bottom: 4px;
+  font-size: 0.9em;
+}
+.card.book .promo {
+  position: absolute;
+  top: 30px;
+  left: -8px;
+  font-size: 1rem;
+  padding: 0.4em 1.8em;
+  box-shadow: 5px 6px 10px -6px #000000;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
